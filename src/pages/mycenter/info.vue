@@ -5,7 +5,7 @@
             <div class="card-body">
               <div class="row">
                 <div class="col-md-4 col-12 text-md-center">
-                  <img :src="info.imgsrc" class="img_head rounded-circle" alt="个人头像">
+                  <img :src="userInfo ? userInfo.headimgurl : info.imgsrc" class="img_head rounded-circle" alt="个人头像">
                 </div>
                 <div class="col-md-8 col-12 mt-3 mt-md-0">
                   <div class="row">
@@ -20,7 +20,7 @@
                   </div>
                   <div class="row">
                     <div class="col-12 mt-3">
-                      第三方账号： {{ info.nickname }}
+                      第三方账号： {{ userInfo ? userInfo.nickname : info.nickname }}
                     </div>
                   </div>
                   <div class="row">
@@ -72,6 +72,7 @@ export default {
   name: 'my-info',
   data () {
     return {
+      userInfo: JSON.parse(localStorage.getItem("userInfo")) || null,
       info: {
         member: true,
         truename: "史以林",

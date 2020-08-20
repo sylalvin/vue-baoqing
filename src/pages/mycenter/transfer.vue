@@ -11,26 +11,26 @@
             <form>
                     <div class="form-group">
                         <label for="username">姓名:</label>
-                        <input type="text" class="form-control" id="username" placeholder="Enter username">
+                        <input type="text" class="form-control" :class="{borderRed: checkname == 'username'}" id="username" v-model="username" placeholder="Enter username">
                     </div>
                     <div class="form-group">
                         <label for="phone">手机号:</label>
-                        <input type="number" class="form-control" id="phone" placeholder="Enter phone">
+                        <input type="number" class="form-control" :class="{borderRed: checkname == 'phone'}" id="phone" v-model="phone" placeholder="Enter phone">
                     </div>
                     <div class="form-group">
                         <label for="address">地址:</label>
-                        <input type="text" class="form-control" id="address" placeholder="Enter address">
+                        <input type="text" class="form-control" :class="{borderRed: checkname == 'address'}" id="address" v-model="address" placeholder="Enter address">
                     </div>
                     <div class="form-group">
                         <label for="check">验证码:</label>
                         <div class="input-group mb-3">
-                            <input class="form-control" placeholder="Enter check">
+                            <input class="form-control" :class="{borderRed: checkname == 'checkNumber'}" placeholder="Enter check" v-model="checkNumber">
                             <div class="input-group-append">
-                                <span class="input-group-text" @click="changeText">{{time + checkText}}</span>
+                                <span class="input-group-text" disabled="true" @click="changeText">{{time + checkText}}</span>
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary" @click="submit">确定移交</button>
+                    <button type="submit" class="btn btn-danger" @click.prevent="submit">确定移交</button>
             </form>
         </div>
     </div>
@@ -43,18 +43,31 @@ export default {
     return {
       s: "",
       checkText: "获取验证码",
-      time: ''
+      time: '',
+      username: "",
+      phone: "",
+      address: "",
+      checkNumber: "",
+      checkname: ""
     }
   },
   methods: {
       changeText () {
+          if(this.s) {
+              this.$message({
+                  message: "请勿频繁点击获取",
+                  type: "warning"
+              })
+              return
+          }
+          this.checkNumber = ""
           this.checkText = "S 后重新获取"
           this.time = 59
           this.s = setInterval(() => {
               if(this.time > 0) {
                 this.time--
               } else {
-                  clearInterval(s)
+                  clearInterval(this.s)
                   this.s = ""
                   this.checkText = "获取验证码"
                   this.time = ''
@@ -62,6 +75,27 @@ export default {
           }, 1000);
       },
       submit () {
+          if(!this.$checkNull(this.username)) {
+              this.$message.error("姓名不能为空");
+              this.checkname = "username"
+              return;
+          }
+          if(!this.$checkNull(this.phone)) {
+              this.$message.error("手机号不能为空");
+              this.checkname = "phone"
+              return;
+          }
+          if(!this.$checkNull(this.address)) {
+              this.$message.error("地址不能为空");
+              this.checkname = "address"
+              return;
+          }
+          if(!this.$checkNull(this.checkNumber)) {
+              this.$message.error("验证码不能为空");
+              this.checkname = "checkNumber"
+              return;
+          }
+          this.checkname = ""
           this.$message({
             message: '移交成功',
             type: 'success'
@@ -78,5 +112,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+.borderRed {
+    border-color: red;
+}
 </style>

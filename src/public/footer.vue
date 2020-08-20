@@ -1,8 +1,8 @@
 <template>
   <div class="container-fluid bg-dark">
     <div class="row">
-      <div class="col-12 pt-2 pb-2">
-        宝之若饴&nbsp;&nbsp;氢力倾心
+      <div class="col-12 pt-2 pb-2 d-block d-md-none">
+        <h4 class="slogan">宝之若饴·氢力倾心</h4>
       </div>
     </div>
     <div class="row">
@@ -51,6 +51,11 @@
     /* position: fixed;
     bottom: 0; */
     color: #fff;
+  }
+  .slogan {
+    font-family: cursive;
+    font-style: italic;
+    color: #2BA234;
   }
   a {
     color: #fff;

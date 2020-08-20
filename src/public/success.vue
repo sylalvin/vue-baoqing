@@ -6,7 +6,7 @@
                 <h3>{{ title }}</h3>
             </div>
             <div class="card-body">
-                <p>{{ userInfo.username }}</p>
+                <p>您好 <b>{{ userInfo ? userInfo.nickname : "游客" }}</b>，欢迎访问宝氢官网！</p>
                 {{ time }} S后将跳至网站首页...
             </div> 
             <div class="card-footer"><router-link to="/">手动跳转</router-link></div>
@@ -24,8 +24,7 @@ export default {
       title: '成功',
       time: 3,
       userInfo: {
-        username: 'alvin',
-        password: '123456'
+        
       }
     }
   },
@@ -33,7 +32,7 @@ export default {
       success () {
           this.title = this.$route.query.checkText
           if(this.title == "登录成功") {
-            localStorage.setItem("userInfo", JSON.stringify(this.userInfo))
+            this.userInfo = JSON.parse(localStorage.getItem("userInfo"))
           } else {
             localStorage.clear()
           }

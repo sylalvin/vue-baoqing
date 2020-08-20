@@ -2,7 +2,7 @@
   <div class="main">
     <div class="container-fuild mt-2">
       <div class="row d-block d-md-none topBtn" :class="{'fixed-top': active}">
-        <div class="col-12">
+        <div class="col-12" @click="purchase">
           前&nbsp;往&nbsp;购&nbsp;买
         </div>
       </div>
@@ -27,7 +27,7 @@
         
       </div>
       <div class="d-none d-md-block slideBtn">
-        <button class="btn btn-danger">
+        <button class="btn btn-success" @click="purchase">
           前<br>
           往<br>
           购<br>
@@ -54,6 +54,12 @@ export default {
       } else {
         this.active = true
       }
+    },
+    purchase() {
+      this.$alert('<strong>暂未开通此功能，敬请期待</strong>', '温馨提示', {
+          dangerouslyUseHTMLString: true,
+          center: true
+      });
     }
   },
   mounted () {

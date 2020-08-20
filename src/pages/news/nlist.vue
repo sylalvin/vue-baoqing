@@ -2,11 +2,11 @@
       <div class="col-md-8 col-12 text-left" v-show="allList.length > 0">
           <div class="row mb-2" v-for="(item,index) in allList" :key="index">
               <div class="col-md-4 col-12">
-                  <img src="../../assets/logo.png" class="img-fluid" alt="">
+                  <img src="../../assets/default.jpg" class="img-fluid" alt="">
               </div>
               <div class="news-item col-md-8 col-12">
                 <h3>{{item.title}}</h3>
-                <p class="n_content">{{item.author}}++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</p>
+                <p class="n_content">{{item.author}}+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</p>
                 <router-link :to="{name: 'news-detail', params: {id: item.id}}" tag="p" class="text-right">详情</router-link>
               </div>
           </div>

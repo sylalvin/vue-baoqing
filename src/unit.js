@@ -1,4 +1,3 @@
-import toast from './plugins/js/toast.js'
 // 获取当前时间
 const getTodayDate = (format) => {
     let todayDate = '';
@@ -26,7 +25,7 @@ const checkDate = (date) => {
 const checkNull = (check_val, msg) => {
     let val = String(check_val);
     if(val == "" || val == null || val == undefined) {
-        toast(msg, 2000);
+        return false;
     }
     return true;
 }

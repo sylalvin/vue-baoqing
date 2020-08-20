@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import IndexIndex from '../pages/index/index.vue'
+import ProductIndex from '../pages/product/index.vue'
 import CosmetIndex from '../pages/cosmet/index.vue'
 import CosmetKzwContent from '../pages/cosmet/kzw.vue'
 import CosmetQcdContent from '../pages/cosmet/qcd.vue'
@@ -62,6 +63,18 @@ export default new Router({
       components: {
         header: Header,
         content: IndexIndex,
+        footer: Footer
+      }
+    },
+    {
+      path: '/product',
+      name: 'ProductIndex',
+      meta: {
+        title: '产品中心'
+      },
+      components: {
+        header: Header,
+        content: ProductIndex,
         footer: Footer
       }
     },
@@ -270,14 +283,12 @@ export default new Router({
         {
           path: 'detail',
           meta: '信息详情',
-          component: MyDetailContent,
-          children: [
-            {
-              path: 'transfer',
-              meta: '移交会籍',
-              component: MyTransferContent
-            }
-          ]
+          component: MyDetailContent
+        },
+        {
+          path: 'transfer',
+          meta: '移交会籍',
+          component: MyTransferContent
         },
         {
           path: 'update',

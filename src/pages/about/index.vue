@@ -71,4 +71,7 @@ export default {
 li >>> .el-menu-item-group__title {
   display: none;
 }
+.el-submenu .el-menu-item {
+    min-width: 0px;
+}
 </style>

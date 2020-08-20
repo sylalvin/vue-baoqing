@@ -12,9 +12,11 @@
   "dependencies": {
     "animate.css": "^4.1.0",
     "bootstrap": "^4.5.1",
+    "element-ui": "^2.13.2",
     "jquery": "^3.5.1",
     "popper.js": "^1.16.1",
     "vue": "^2.5.2",
+    "vue-qr": "^2.2.1",
     "vue-resource": "^1.5.1",
     "vue-router": "^3.0.1"
   },

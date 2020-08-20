@@ -10,10 +10,10 @@
       <div class="carousel-inner">
             <div v-for="(item, index) in carouselList" v-bind:key="index" class="carousel-item" :class="index == 0 ? 'active' : ''">
                 <img :src="item.src">
-                <div class="carousel-caption">
+                <!-- <div class="carousel-caption">
                     <h3>{{item.title}}</h3>
                     <p>{{item.desc}}</p>
-                </div>
+                </div> -->
             </div>
       </div>
 

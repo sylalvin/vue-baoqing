@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="card" v-show="display1">
+        <div class="card">
             <div class="card-header" @click="changeMember">会籍详情</div>
             <div class="card-body">
               <div class="row" v-if="JSON.stringify(detail) == '{}'">
@@ -11,14 +11,14 @@
               <div class="row" v-else>
                 <div class="col-12">
                   <div class="row">
-                    <div class="col-md-4 col-12">
-                      <img class="pro_pic" src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1027245443,3552957153&fm=26&gp=0.jpg" alt="">
+                    <div class="col-md-4 col-12 text-center">
+                      <img class="img_head rounded-circle" :src="userInfo ? userInfo.headimgurl : info.imgsrc" alt="">
                     </div>
                     <div class="col-md-8 col-12">
                       <h4 class="mt-3">会籍名称：{{ detail.name }}</h4>
                       <p class="mt-md-3">价格：{{ detail.price }}</p>
                       <p class="mt-md-3">到期时间：{{ detail.date }}</p>
-                      <router-link to="/mycenter/detail/transfer" class="mt-md-3 btn btn-danger" tag="button" @click.native="transfer">移交会籍</router-link>
+                      <router-link to="/mycenter/transfer" class="mt-md-3 btn btn-danger" tag="button">移交会籍</router-link>
                     </div>
                   </div>
                 </div>
@@ -41,8 +41,6 @@
               </div>
             </div>
         </div>
-
-        <router-view></router-view>
     </div>
 </template>
 
@@ -51,7 +49,7 @@ export default {
   name: 'my-detail',
   data () {
     return {
-      display1: true,
+      userInfo: JSON.parse(localStorage.getItem("userInfo")) || null,
       detail: {
         name: "",
         desc: "享受购买优惠",
@@ -83,10 +81,6 @@ export default {
   methods: {
     changeMember () {
       this.info.member = !this.info.member
-    },
-    transfer () {
-      this.display1 = false
-      console.log("display1")
     }
   }
 }
@@ -95,8 +89,8 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
   .img_head {
-    height: 100px;
-    width: 100px;
+    height: 150px;
+    width: 150px;
   }
   @media (min-width: 768px){
       .img_head {
@@ -109,14 +103,6 @@ export default {
   @media (min-width: 768px){
       .img_head {
         margin-top: 20px;
-      }
-  }
-  .pro_pic {
-    width: 100%;
-  }
-  @media (max-width: 768px){
-      .pro_pic {
-        width: 50%;
       }
   }
 </style>

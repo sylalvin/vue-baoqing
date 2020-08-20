@@ -6,7 +6,6 @@ import App from './App'
 import router from './router'
 import Global from '@/config/global_variable.js'
 import { getTodayDate, checkNull } from './unit.js'
-import showToast from './plugins/js/toast.js'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
 import animate from 'animate.css'
@@ -15,9 +14,8 @@ import 'element-ui/lib/theme-chalk/index.css'
 
 Vue.config.productionTip = false
 Vue.prototype.GLOBAL = Global
-Vue.prototype.getTodayDate = getTodayDate
-Vue.prototype.checkNull = checkNull
-Vue.prototype.$showToast = showToast
+Vue.prototype.$getTodayDate = getTodayDate
+Vue.prototype.$checkNull = checkNull
 Vue.use(VueResource)
 Vue.use(animate)
 Vue.use(ElementUI)
