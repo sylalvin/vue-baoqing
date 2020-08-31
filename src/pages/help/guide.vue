@@ -3,7 +3,7 @@
             <div class="card">
                 <div class="card-header">氢宝瓶使用说明</div>
                 <div class="card-body">
-                    <img src="../../assets/guide.jpg" alt="">
+                    <img :src="this.$GLOBAL.staticUrl + '/guide.jpg'" alt="">
                 </div>
             </div>
         </div>

@@ -1,0 +1,10 @@
+/* .container >>> .row, .container-fluid >>> .row{
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+} */
+.el-message-box {
+    width: 80%;
+}
+video {
+    max-width: 100%;
+}

@@ -2,9 +2,16 @@
   <div class="main pb-1 pb-md-3">
     <carousel v-bind:carousel-list="carouselList"></carousel>
     <div class="container">
+
+      <!-- <div class="mt-3 mb-3 embed-responsive embed-responsive-16by9">
+        <video width="320" height="240" controls>
+          <source src="http://test.h2h777.cn/vedio/vedio1.mp4" type="video/mp4">
+        </video>
+      </div> -->
+
       <div class="row" ref="pic1">
-        <div class="col-12 pt-3 pb-3 text-bg">
-          <h3 class="animate__animated" :class="{animate__bounceInUp: pic1_active}" v-show="pic1_show">产 品 展 示</h3><br>
+        <div class="col-12 pt-3 text-bg">
+          <h3 class="animate__animated" :class="{animate__bounceInUp: pic1_active}" v-show="pic1_show"><span class="title-text">产 品 展 示</span></h3><br>
           <!-- <p class="animate__animated" :class="{animate__fadeInUpBig: pic1_active}" v-show="pic1_show">
               纯度高: 纯度≥99.95%的食品级氢气<br>
               体积小: 约等于一瓶500毫升可乐大小<br>
@@ -14,64 +21,52 @@
               更便捷: 随时随地，想吸就吸<br>
               P r o d u c t  D i s p l a y
           </p> -->
-          <img class="down" src="../../assets/down.png" alt="">
+          <img class="down" :src="this.$GLOBAL.staticUrl + '/down.png'" alt="">
         </div>
         <div class="col-12 animate__animated" :class="{animate__bounceInRight: pic1_active}" v-show="pic1_show">
-          <div class="row">
-            <img class="img-fluid" src="../../assets/advantage.jpg" alt="">
-          </div>
+            <img class="img-fluid" :src="this.$GLOBAL.staticUrl + '/advantage.jpg'" alt="">
         </div>
       </div>
       <div class="row" ref="pic2">
-        <div class="col-12 pt-3 pb-3 text-bg">
-          <h3 class="animate__animated" :class="{animate__bounceInUp: pic2_active}" v-show="pic2_show">适 用 人 群</h3><br>
-          <p class="animate__animated" :class="{animate__fadeInUpBig: pic2_active}" v-show="pic2_show">
+        <div class="col-12 pt-3 text-bg">
+          <h3 class="animate__animated" :class="{animate__bounceInUp: pic2_active}" v-show="pic2_show"><span class="title-text">适 用 人 群</span></h3><br>
+          <span class="animate__animated" :class="{animate__fadeInUpBig: pic2_active}" v-show="pic2_show">
             不久的将来，人们已习惯在日常喝氢水、吸氢气等这样良好的生活方式
-          </p>
+          </span><br>
           <!-- <p class="animate__animated" :class="{animate__fadeInUpBig: pic2_active}" v-show="pic2_show">
             患病群体：对抗细胞变异、对抗细胞凋亡、抗炎症、免疫调节、代谢提升<br>
             爱美人群：美容抗衰、组织修复、抗过敏<br>
             亚健康群：抗辐射、抗疲劳<br>
             排毒减肥：氢气可以通过促进一种重要的信号分子FGF 21发挥减肥和治疗脂肪肝
           </p> -->
-          <img class="down" src="../../assets/down.png" alt="">
+          <img class="down" :src="this.$GLOBAL.staticUrl + '/down.png'" alt="">
         </div>
         <!-- <div class="col-12 animate__animated" :class="{animate__bounceInRight: pic2_active}" v-show="pic2_show">
           <div class="row">
-            <img class="img-fluid" src="../../assets/pic2.png" alt="">
+            <img class="img-fluid" :src="this.$GLOBAL.staticUrl + '/pic2.png'" alt="">
           </div>
         </div> -->
         <div ref="sy1" class="col-12 animate__animated" :class="{animate__bounceInLeft: sy1_active}" v-show="sy1_show">
-          <div class="row">
-            <img class="img-fluid" src="../../assets/shiyong1.png" alt="">
-          </div>
+            <img class="img-fluid" :src="this.$GLOBAL.staticUrl + '/shiyong1.png'" alt="">
         </div>
         <div ref="sy2" class="col-12 animate__animated" :class="{animate__bounceInRight: sy2_active}" v-show="sy2_show">
-          <div class="row">
-            <img class="img-fluid" src="../../assets/shiyong2.png" alt="">
-          </div>
+            <img class="img-fluid" :src="this.$GLOBAL.staticUrl + '/shiyong2.png'" alt="">
         </div>
         <div ref="sy3" class="col-12 animate__animated" :class="{animate__bounceInLeft: sy3_active}" v-show="sy3_show">
-          <div class="row">
-            <img class="img-fluid" src="../../assets/shiyong3.png" alt="">
-          </div>
+            <img class="img-fluid" :src="this.$GLOBAL.staticUrl + '/shiyong3.png'" alt="">
         </div>
         <div ref="sy4" class="col-12 animate__animated" :class="{animate__bounceInRight: sy4_active}" v-show="sy4_show">
-          <div class="row">
-            <img class="img-fluid" src="../../assets/shiyong4.png" alt="">
-          </div>
+            <img class="img-fluid" :src="this.$GLOBAL.staticUrl + '/shiyong4.png'" alt="">
         </div>
       </div>
       <div class="row" ref="pic3">
-        <div class="col-12 pt-3 pb-3 text-bg">
-          <h3 class="animate__animated" :class="{animate__bounceInUp: pic3_active}" v-show="pic3_show">相 关 资 质</h3><br>
-          <p class="animate__animated" :class="{animate__fadeInUpBig: pic3_active}" v-show="pic3_show">道路运输许可证、气瓶充装许可证、质量管理体系认证证书、安全生产标准化证书、上海市计量测试技术研究院华东国家计量测试中心 中国上海测试中心检测报告、上海市特种设备监督检验技术研究院检验报告。</p>
-          <img class="down" src="../../assets/down.png" alt="">
+        <div class="col-12 pt-3 text-bg">
+          <h3 class="animate__animated" :class="{animate__bounceInUp: pic3_active}" v-show="pic3_show"><span class="title-text">相 关 资 质</span></h3><br>
+          <span class="animate__animated" :class="{animate__fadeInUpBig: pic3_active}" v-show="pic3_show">道路运输许可证、气瓶充装许可证、质量管理体系认证证书、安全生产标准化证书、上海市计量测试技术研究院华东国家计量测试中心 中国上海测试中心检测报告、上海市特种设备监督检验技术研究院检验报告。</span><br>
+          <img class="down" :src="this.$GLOBAL.staticUrl + '/down.png'" alt="">
         </div>
         <div class="col-12 animate__animated" :class="{animate__bounceInRight: pic3_active}" v-show="pic3_show">
-          <div class="row">
-            <img class="img-fluid" src="../../assets/book.png" alt="">
-          </div>
+            <img class="img-fluid" :src="this.$GLOBAL.staticUrl + '/book.png'" alt="">
         </div>
       </div>
     </div>
@@ -101,7 +96,7 @@ export default {
       sy4_active: false,
       carouselList: [
         {
-          "src": "/static/images/banner.png",
+          "src": this.$GLOBAL.staticUrl + '/banner.png',
           "title": "便携氢气",
           "desc": "以氢健康技术造福人类"
         }
@@ -179,12 +174,19 @@ export default {
 h1{
   font-weight: normal;
 }
+span.title-text {
+  font-weight: 900 !important;
+  background-color: #64AE34;
+  padding: 10px 20px;
+  color: #fff;
+}
+.index-img {
+  width: 100%;
+  height: 50px;
+}
 .carousel-item img{
   width: 100%;
   height: auto;
-}
-.img-fluid {
-  width: 100%;
 }
 .main {
   min-height: 1000px;
@@ -195,10 +197,10 @@ h1{
 kbd {
   background-color: #2BA234;
 }
-.text-bg {
+/* .text-bg {
   background-image: url("../../assets/pro-bg.jpg");
   background-repeat:no-repeat;
   background-size:100% 100%;
   -moz-background-size:100% 100%;
-}
+} */
 </style>

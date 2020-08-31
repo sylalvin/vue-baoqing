@@ -1,46 +1,68 @@
 <template>
-  <div class="main mt-3 pb-5">
-    <div class="container">
+  <div class="main">
+    <div class="container-fluid mt-3 mb-5">
       <div class="row">
-        <div class="col-12 pb-3 animate__animated animate__bounceInRight">
-          <img class="product-icon" src="../../assets/health-icon.png" alt=""><span class="pl-2 product-text">保健</span>
-        </div>
-        <div class="col-12">
-          <img class="rounded" src="../../assets/health.jpg" alt="">
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-12 pb-3 animate__animated animate__bounceInRight">
-          <img class="product-icon" src="../../assets/cosmet-icon.png" alt=""><span class="pl-2 product-text">美容</span>
-        </div>
-        <div class="col-12">
-          <img class="rounded" src="../../assets/cosmet.jpg" alt="">
-        </div>
+        <tabs v-bind:tabs-list="tabsList"></tabs>
+        
+        <router-view></router-view>
+        
+        
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import Tabs from '../../public/components/tabs.vue'
 export default {
-  name: 'pr-index',
+  name: 'm-index',
   data () {
-    return {}
+    return {
+      tabsList: [
+        {
+          link: "/product/detail",
+          name: "产品详情"
+        },
+        {
+          link: "/product/health",
+          name: "保健",
+        },
+        {
+          link: "/product/cosmet",
+          name: "美容",
+        }
+      ]
+    }
+  },
+  components: {
+    "tabs": Tabs
+  },
+  methods: {
+    
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1{
-  font-weight: normal;
+.contents {
+  font-family: 'Courier New', Courier, monospace;
+  border-bottom: #08ac7a solid 1px;
 }
-.product-icon {
-  height: 32px;
+ul {
+  padding: 10px 0px;
 }
-.product-text {
-  color: #2BA234;
-  font-style: italic;
-  font-size: 1.2rem;
+li {
+  list-style: none;
+  padding: 10px;
+}
+li a {
+  color: black;
+}
+.inner-nav .router-link-active {
+  background-color: #fff !important;
+  color: #000 !important;
+  font-weight: 600 !important;
+  border-bottom: none;
 }
 </style>

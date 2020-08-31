@@ -2,7 +2,7 @@
     <div class="container-fuild">
         <div class="row mt-md-5 mb-md-5">
             <div class="col-12 notfound mt-md-5 mt-3 mb-md-5 mb-3">
-                <img src="../assets/404.png" alt="">
+                <img :src="this.$GLOBAL.staticUrl + '/404.png'" alt="">
             </div>
             <div class="col-12 notfound_text mb-md-5 mb-3">
                 <p>您访问的页面不存在&nbsp; <span style="color: red; font-size: 2rem;">{{ time }}</span> &nbsp;S后跳转至网站首页</p>

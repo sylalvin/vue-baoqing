@@ -9,12 +9,12 @@
                 <!-- <div id="login_container"></div> -->
                 <form>
                     <div class="form-group">
-                    <label for="email">账号:</label>
-                    <input type="email" class="form-control" id="email" placeholder="Enter username" :class="{borderRed: checkname == 'username'}" v-model="username">
+                    <label for="username">账号:</label>
+                    <input type="number" class="form-control" id="username" placeholder="请输入手机号" :class="{borderRed: checkname == 'username'}" v-model="username">
                     </div>
                     <div class="form-group">
-                    <label for="pwd">密码:</label>
-                    <input type="password" class="form-control" id="pwd" placeholder="Enter password" :class="{borderRed: checkname == 'password'}" v-model="password">
+                    <label for="password">密码:</label>
+                    <input type="password" class="form-control" id="password" placeholder="请输入密码" :class="{borderRed: checkname == 'password'}" v-model="password">
                     </div>
                     <button type="submit" class="btn btn-primary" @click.prevent="submit">立即登录</button>
                 </form>
@@ -24,14 +24,14 @@
                 <vue-qr :text="qrurl" :size="300" :logoSrc="imageUrl" :margin="20" :class="{showModal: !r_active}"></vue-qr>
                 <p class="d-none d-md-block">请使用微信扫描上方二维码</p>
                 <p class="d-block d-md-none">长按识别图中二维码</p>
-                <div v-show="!r_active"><img class="qrcode-img pr-2" src="../../assets/reflash.png" alt="" @click="wxlogin"><span>刷新二维码</span></div>
+                <div v-show="!r_active"><img class="qrcode-img pr-2" :src="this.$GLOBAL.staticUrl + '/reflash.png'" alt="" @click="wxlogin"><span>刷新二维码</span></div>
             </div> 
             <div class="card-footer"><router-link to="/forget">忘记密码</router-link>&nbsp;&nbsp;&nbsp;&nbsp;<router-link to="/register">没有账号？前往注册</router-link></div>
         </div>
 
         <div class="row mt-md-5 mt-3" v-show="phoneway">
             <div class="col-12">——————&nbsp;&nbsp;第三方登录&nbsp;&nbsp;——————</div>
-            <img @click="wxlogin" class="weixin" src="../../assets/weixin.png" alt="微信登录">
+            <img @click="wxlogin" class="weixin" :src="this.$GLOBAL.staticUrl + '/weixin.png'" alt="微信登录">
             <div class="col-12 service">登录表示您已阅读和同意 <span data-toggle="modal" data-target="#service">服务条款</span></div>
         </div>
         <div class="row mt-md-5 mt-3" v-show="wxway">
@@ -66,18 +66,18 @@ export default {
       s: -1,
       times: 0,
       r_active: false,
-      'phoneway': true,
-      'wxway': false,
+      phoneway: true,
+      wxway: false,
       imageUrl: require("../../assets/logo.png"),
       qrurl: "",
-      userInfo: {},
-      username: "",
-      password: "",
+      username: localStorage.getItem("username") ? localStorage.getItem("username") : "",
+      password: localStorage.getItem("password") ? localStorage.getItem("password") : "",
       checkname: ""
     }
   },
   methods: {
       submit () {
+          var that = this
           if(!this.$checkNull(this.username)) {
               this.$message.error("账号不能为空");
               this.checkname = "username"
@@ -89,12 +89,37 @@ export default {
               return;
           }
           this.checkname = ""
-          this.$router.push({
-              path: '/success',
-              query: {
-                  checkText: '登录成功'
+          this.$http.post(that.$GLOBAL.apiUrl + '/user/Login',{
+            accounts: this.username,
+            pwd: this.password,
+            verify: this.checkNumber
+          }).then(
+              function(res) {
+                  if(res.body.code == 0) {
+                      localStorage.setItem("userInfo", JSON.stringify(res.body.data))
+                      localStorage.setItem("username", that.username)
+                      localStorage.setItem("password", that.password)
+                      that.$router.push({
+                        path: '/success',
+                        query: {
+                            checkText: '登录成功'
+                        }
+                      })
+                  } else {
+                      that.$message({
+                        message: res.body.msg,
+                        type: "warning"
+                      })
+                  }
+              },
+              function(error) {
+                  console.log(JSON.stringify(error))
+                  that.$message({
+                    message: JSON.stringify(error),
+                    type: "warning"
+                  })
               }
-          })
+          )
       },
       wxlogin () {
           var that = this
@@ -129,15 +154,48 @@ export default {
               if (xhr1.readyState == 4 && xhr1.status == 200) {
                   let jsonData1 = JSON.parse(xhr1.responseText)
                   if (jsonData1.status == 0) {
-                      localStorage.setItem("userInfo", JSON.stringify(jsonData1.data))
                       clearInterval(that.s)
                       that.times = 0
-                      that.$router.push({
-                        path: '/success',
-                        query: {
-                            checkText: '登录成功'
-                        }
-                      })
+                      localStorage.setItem("userInfo", JSON.stringify(jsonData1.data))
+                      if(jsonData1.data.openid) {
+                        that.$http.post(that.$GLOBAL.apiUrl + '/user/get',{
+                            weixin_web_openid: jsonData1.data.openid
+                        }).then(
+                            function(res) {
+                                if(res.body.code == 0 || res.body.code == -10) {
+                                    if(res.body.code == 0) {
+                                        localStorage.setItem("userInfo", JSON.stringify(res.body.data))
+                                    }
+                                    clearInterval(that.s)
+                                    that.times = 0
+                                    let bindres = that.$bindMobile()
+                                    if(bindres == false) {
+                                        that.$router.push({
+                                            path: '/bind'
+                                        })
+                                    } else {
+                                        that.$router.push({
+                                            path: '/success',
+                                            query: {
+                                                checkText: '登录成功'
+                                            }
+                                        })
+                                    }
+                                } else {
+                                    that.$message({
+                                        message: res.body.msg,
+                                        type: "warning"
+                                    })
+                                }
+                            },
+                            function(error) {
+                                that.$message({
+                                    message: "网络请求失败",
+                                    type: "warning"
+                                })
+                            }
+                        )
+                      } 
                   } else if (jsonData1.status == -2) {
                       that.r_active = false
                       clearInterval(that.s)
@@ -156,7 +214,7 @@ export default {
           this.wxway = false
           this.phoneway = true
           if (this.s != -1) {
-              clearInterval(that.s)
+              clearInterval(this.s)
           }
       }
   },
@@ -166,6 +224,11 @@ export default {
   },
   mounted () {
       
+  },
+  destroyed () {
+    if(this.s) {
+      clearInterval(this.s)
+    }
   }
 }
 </script>

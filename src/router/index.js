@@ -2,19 +2,16 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import IndexIndex from '../pages/index/index.vue'
 import ProductIndex from '../pages/product/index.vue'
-import CosmetIndex from '../pages/cosmet/index.vue'
-import CosmetKzwContent from '../pages/cosmet/kzw.vue'
-import CosmetQcdContent from '../pages/cosmet/qcd.vue'
-import HealthIndex from '../pages/health/index.vue'
-import HealthHxdContent from '../pages/health/hxd.vue'
-import HealthCwContent from '../pages/health/cw.vue'
-import HealthXxgContent from '../pages/health/xxg.vue'
+import ProductDetailContent from '../pages/product/detail.vue'
+import ProductHealthContent from '../pages/product/health.vue'
+import ProductCosmetContent from '../pages/product/cosmet.vue'
 import MemberIndex from '../pages/member/index.vue'
 import MemberContent from '../pages/member/content.vue'
 import HelpIndex from '../pages/help/index.vue'
 import HelpGuideIndex from '../pages/help/guide.vue'
 import HelpSafeIndex from '../pages/help/safe.vue'
 import LoginIndex from '../pages/login/index.vue'
+import ForgetIndex from '../pages/forget/index.vue'
 import RegisterIndex from '../pages/register/index.vue'
 import MycenterIndex from '../pages/mycenter/index.vue'
 import MyInfoContent from '../pages/mycenter/info.vue'
@@ -22,6 +19,7 @@ import MyDetailContent from '../pages/mycenter/detail.vue'
 import MyUpdateContent from '../pages/mycenter/update.vue'
 import MyTransferContent from '../pages/mycenter/transfer.vue'
 import Success from '../public/success.vue'
+import BindIndex from '../pages/bind/index.vue'
 import NewsIndex from '../pages/news/index.vue'
 import NewsDetail from '../pages/news/detail.vue'
 import NewsList from '../pages/news/nlist.vue'
@@ -68,6 +66,10 @@ export default new Router({
     },
     {
       path: '/product',
+      redirect: '/product/detail',
+    },
+    {
+      path: '/product',
       name: 'ProductIndex',
       meta: {
         title: '产品中心'
@@ -76,7 +78,24 @@ export default new Router({
         header: Header,
         content: ProductIndex,
         footer: Footer
-      }
+      },
+      children: [
+        {
+          path: 'detail',
+          meta: '产品详情',
+          component: ProductDetailContent
+        },
+        {
+          path: 'health',
+          meta: '保健',
+          component: ProductHealthContent
+        },
+        {
+          path: 'cosmet',
+          meta: '美容',
+          component: ProductCosmetContent
+        }
+      ]
     },
     {
       path: '/news',
@@ -86,7 +105,7 @@ export default new Router({
       path: '/news',
       name: 'NewsIndex',
       meta: {
-        title: '品牌动态'
+        title: '实时动态'
       },
       components: {
         header: Header,
@@ -99,11 +118,11 @@ export default new Router({
           meta: '宝氢',
           component: NewsList
         },
-        {
-          path: 'pj',
-          meta: '浦江',
-          component: NewsList
-        }
+        // {
+        //   path: 'pj',
+        //   meta: '浦江',
+        //   component: NewsList
+        // }
       ]
     },
     {
@@ -136,81 +155,26 @@ export default new Router({
           meta: '宝氢',
           component: MyBqContent
         },
-        {
-          path: 'spq',
-          meta: '食品氢',
-          component: MyFoodContent
-        },
-        {
-          path: 'qncy',
-          meta: '氢能产业',
-          component: MyEnergyContent
-        },
-        {
-          path: 'product',
-          meta: '浦江产品线',
-          component: MyPjpContent
-        },
-        {
-          path: 'quality',
-          meta: '浦江质保体系',
-          component: MyPjqContent
-        }
-      ]
-    },
-    {
-      path: '/cosmet',
-      name: 'CosmetIndex',
-      redirect: '/cosmet/kzw',
-      meta: {
-        title: '美容'
-      },
-      components: {
-        header: Header,
-        content: CosmetIndex,
-        footer: Footer
-      },
-      children: [
-        {
-          path: 'kzw',
-          meta: '抗皱纹',
-          component: CosmetKzwContent
-        },
-        {
-          path: 'qcd',
-          meta: '治青春痘',
-          component: CosmetQcdContent
-        }
-      ]
-    },
-    {
-      path: '/health',
-      name: 'HealthIndex',
-      redirect: '/health/hxd',
-      meta: {
-        title: '保健'
-      },
-      components: {
-        header: Header,
-        content: HealthIndex,
-        footer: Footer
-      },
-      children: [
-        {
-          path: 'hxd',
-          meta: '呼吸道',
-          component: HealthHxdContent
-        },
-        {
-          path: 'cw',
-          meta: '肠胃',
-          component: HealthCwContent
-        },
-        {
-          path: 'xxg',
-          meta: '心血管',
-          component: HealthXxgContent
-        }
+        // {
+        //   path: 'spq',
+        //   meta: '食品氢',
+        //   component: MyFoodContent
+        // },
+        // {
+        //   path: 'qncy',
+        //   meta: '氢能产业',
+        //   component: MyEnergyContent
+        // },
+        // {
+        //   path: 'product',
+        //   meta: '浦江产品线',
+        //   component: MyPjpContent
+        // },
+        // {
+        //   path: 'quality',
+        //   meta: '浦江质保体系',
+        //   component: MyPjqContent
+        // }
       ]
     },
     {
@@ -231,11 +195,11 @@ export default new Router({
           meta: '宝氢会籍',
           component: MemberContent
         },
-        {
-          path: 'other',
-          meta: '其它会籍',
-          component: MemberContent
-        }
+        // {
+        //   path: 'other',
+        //   meta: '其它会籍',
+        //   component: MemberContent
+        // }
       ]
     },
     {
@@ -259,6 +223,18 @@ export default new Router({
       components: {
         header: Header,
         content: RegisterIndex,
+        footer: Footer
+      }
+    },
+    {
+      path: '/forget',
+      name: 'ForgetIndex',
+      meta: {
+        title: '找回密码'
+      },
+      components: {
+        header: Header,
+        content: ForgetIndex,
         footer: Footer
       }
     },
@@ -310,6 +286,18 @@ export default new Router({
       }
     },
     {
+      path: '/bind',
+      name: 'bind',
+      meta: {
+        title: '绑定信息'
+      },
+      components: {
+        header: Header,
+        content: BindIndex,
+        footer: Footer
+      }
+    },
+    {
       path: '/service',
       name: 'service',
       meta: {
@@ -348,3 +336,7 @@ export default new Router({
     }
   ]
 })
+const originalPush = Router.prototype.push
+Router.prototype.push = function push(location) {
+   return originalPush.call(this, location).catch(err => err)
+}

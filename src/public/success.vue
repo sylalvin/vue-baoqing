@@ -30,11 +30,13 @@ export default {
   },
   methods: {
       success () {
+          let jump_url = '/'
           this.title = this.$route.query.checkText
           if(this.title == "登录成功") {
             this.userInfo = JSON.parse(localStorage.getItem("userInfo"))
-          } else {
-            localStorage.clear()
+            jump_url = '/'
+          } else if (this.title == "注册成功") {
+            jump_url = '/login'
           }
           
           this.s = setInterval(() => {
@@ -45,7 +47,7 @@ export default {
                   this.s = ""
                   this.time = 3
                   this.$router.push({
-                      path: '/'
+                      path: jump_url
                   })
               }
           }, 1000);

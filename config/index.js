@@ -10,7 +10,16 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {
+      // '/api': {
+      //   target: 'https://shop.h2h777.cn/index.php?s=',
+      //   secure: true,
+      //   changeOrigin: true,
+      //   pathRewrite: { //可以不写
+      //     '^/api': '/api'
+      //   }
+      // }
+    },
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST

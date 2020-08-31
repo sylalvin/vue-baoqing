@@ -3,7 +3,7 @@
             <div class="card">
                 <div class="card-header">氢宝瓶安全防范</div>
                 <div class="card-body">
-                    <img src="../../assets/safe.jpg" alt="">
+                    <img :src="this.$GLOBAL.staticUrl + '/safe.jpg'" alt="">
                 </div>
             </div>
         </div>

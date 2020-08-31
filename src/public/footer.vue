@@ -7,14 +7,14 @@
     </div>
     <div class="row">
       <div class="col-12 pt-2 pb-2">
-        <a :href= "this.GLOBAL.baseUrl">首页</a>&nbsp;
-        <a :href= "this.GLOBAL.baseUrl + '/member'">会籍说明</a>&nbsp;
-        <a :href= "this.GLOBAL.baseUrl + '/health'">保健</a>&nbsp;
-        <a :href= "this.GLOBAL.baseUrl + '/cosmet'">美容</a>&nbsp;
-        <a :href= "this.GLOBAL.baseUrl + '/news'">品牌动态</a>&nbsp;
-        <a :href= "this.GLOBAL.baseUrl + '/about'">关于我们</a>&nbsp;
-        <a :href= "this.GLOBAL.baseUrl + '/service'">服务条款</a>&nbsp;
-        <a :href= "this.GLOBAL.baseUrl + '/help'">帮助中心</a>
+        <a :href= "this.$GLOBAL.baseUrl">首页</a>&nbsp;
+        <a :href= "this.$GLOBAL.baseUrl + '/member'">会籍说明</a>&nbsp;
+        <a :href= "this.$GLOBAL.baseUrl + '/product'">产品中心</a>&nbsp;
+        <a :href= "this.$GLOBAL.baseUrl + '/news'">实时动态</a>&nbsp;
+        <!-- <a href= "#">实时动态</a>&nbsp; -->
+        <a :href= "this.$GLOBAL.baseUrl + '/about'">关于我们</a>&nbsp;
+        <a :href= "this.$GLOBAL.baseUrl + '/service'">服务条款</a>&nbsp;
+        <a :href= "this.$GLOBAL.baseUrl + '/help'">帮助中心</a>
       </div>
     </div>
     <div class="row">
@@ -24,10 +24,10 @@
     </div>
     <div class="row wx_pic">
       <div class="col-4 col-md-3 col-lg-2 pt-2 pb-2 offset-2 offset-md-3 offset-lg-4">
-        <img src="../assets/wx.jpg" alt="扫码关注公众号">
+        <img :src="this.$GLOBAL.staticUrl + '/wx.jpg'" alt="扫码关注公众号">
       </div>
-      <div class="col-4 col-md-3 col-lg-2 pt-2 pb-2">
-        <img src="../assets/xcx.jpg" alt="扫码使用小程序">
+      <div class="col-4 col-md-3 col-lg-2 pt-2 pb-2" ref="minipro">
+        <img :src="this.$GLOBAL.staticUrl + '/xcx.jpg'" alt="扫码使用小程序">
       </div>
     </div>
   </div>

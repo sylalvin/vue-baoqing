@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="row mt-5">
       <div class="col-12 mt-5 text-center">
-          <img src="../assets/logo.png" alt="">
+          <img :src="this.$GLOBAL.staticUrl + '/logo.png'" alt="">
           <h1 class="mt-5">敬请期待</h1>
       </div>
     </div>

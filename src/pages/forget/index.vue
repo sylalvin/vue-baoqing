@@ -1,6 +1,6 @@
 <template>
     <div class="card">
-        <div class="card-header">密码安全</div>
+        <div class="card-header">找回密码</div>
         <div class="card-body text-left">
             <form>
                     <div class="form-group">
@@ -12,6 +12,10 @@
                         <input type="password" class="form-control" :class="{borderRed: checkname == 'password_again'}" v-model="password_again" placeholder="请再次输入新密码">
                     </div>
                     <div class="form-group">
+                        <label for="username">手机号码:</label>
+                        <input type="number" class="form-control" :class="{borderRed: checkname == 'username'}" v-model="username" placeholder="请输入注册手机号">
+                    </div>
+                    <div class="form-group">
                         <label for="check">验证码:</label>
                         <div class="input-group mb-3">
                             <input class="form-control" placeholder="请输入验证码" :class="{borderRed: checkname == 'checkNumber'}" v-model="checkNumber">
@@ -20,7 +24,7 @@
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary" @click.prevent="submit">确定修改</button>
+                    <button type="submit" class="btn btn-primary" @click.prevent="submit">确定找回</button>
             </form>
         </div>
     </div>
@@ -28,15 +32,15 @@
 
 <script>
 export default {
-  name: 'my-update',
+  name: 'forget',
   data () {
     return {
       s: "",
       checkText: "获取验证码",
       time: '',
-      username: localStorage.getItem("username") ? localStorage.getItem("username") : "",
       password: "",
       password_again: "",
+      username: "",
       checkNumber: "",
       checkname: ""
     }
@@ -57,7 +61,7 @@ export default {
               return;
           }
           this.$http.post(that.$GLOBAL.apiUrl + '/sms/send',{
-            phone: localStorage.getItem("username"),
+            phone: that.username,
             action: 3
           }).then(function(res) {
             if (res.body.code == 0) {
@@ -123,8 +127,13 @@ export default {
                       localStorage.setItem("username", that.username)
                       localStorage.setItem("password", that.password)
                       that.$message({
-                        message: res.body.msg,
+                        message: "成功找回密码,即将前往登录",
                         type: "success"
+                      })
+                      setTimeout(function() {
+                        that.$router.push({
+                            path: "/login"
+                        }, 2000)
                       })
                   } else {
                       that.$message({

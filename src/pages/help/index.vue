@@ -1,17 +1,8 @@
 <template>
   <div class="main">
-    <div class="container-fuild mt-3 mb-5">
+    <div class="container-fluid mt-3 mb-5">
       <div class="row">
-        <div class="col-md-2 offset-md-1 col-12 text-left">
-          <ul>
-            <li class="inner-nav">
-              <router-link to="/help/guide" tag="span">氢宝瓶使用说明</router-link>
-            </li>
-            <li class="inner-nav">
-              <router-link to="/help/safe" tag="span">安全防范</router-link>
-            </li>
-          </ul>
-        </div>
+        <tabs v-bind:tabs-list="tabsList"></tabs>
         
         
         <router-view></router-view>
@@ -23,21 +14,31 @@
 </template>
 
 <script>
+import Tabs from '../../public/components/tabs.vue'
 export default {
   name: 'm-index',
   data () {
     return {
-      
+      tabsList: [
+        {
+          link: "/help/guide",
+          name: "氢宝瓶使用说明"
+        },
+        {
+          link: "/help/safe",
+          name: "安全防范",
+        }
+      ]
     }
+  },
+  components: {
+    "tabs": Tabs
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.container {
-  text-align: left;
-}
 .contents {
   font-family: 'Courier New', Courier, monospace;
   border-bottom: #08ac7a solid 1px;

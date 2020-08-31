@@ -6,7 +6,7 @@
                     <div class="row mt-3">
                         <div class="col-12">
                             <h4><kbd>产品展示：</kbd></h4>
-                            <img src="../../assets/pic1.png" alt=""><hr>
+                            <img :src="this.$GLOBAL.staticUrl + '/pic1.png'" alt=""><hr>
                             <blockquote class="blockquote">
                                 <p>
                                     纯度高: 纯度≥99.95%的食品级氢气
@@ -29,7 +29,7 @@
                             </blockquote>
 
                             <h4><kbd>适用人群：</kbd></h4>
-                            <img src="../../assets/pic2.png" alt=""><hr>
+                            <img :src="this.$GLOBAL.staticUrl + '/pic2.png'" alt=""><hr>
                             <blockquote class="blockquote">
                                 <p>
                                     患病群体：对抗细胞变异、对抗细胞凋亡、抗炎症、免疫调节、代谢提节
@@ -46,7 +46,7 @@
                             </blockquote>
 
                             <h4><kbd>相关资质：</kbd></h4>
-                            <img src="../../assets/pic3.png" alt=""><hr>
+                            <img :src="this.$GLOBAL.staticUrl + '/pic3.png'" alt=""><hr>
                             <blockquote class="blockquote">
                                 <p>
                                     道路运输许可证、气瓶充装许可证、质量管理体系认证证书、安全生产标准化证书、上海市计量测试技术研究院华东国家计量测试中心 中国上海测试中心检测报告、上海市特种设备监督检验技术研究院检验报告。

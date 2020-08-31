@@ -1,18 +1,15 @@
 <template>
   <div class="main">
     <div class="container mt-3 mb-5" v-show="isShow">
-        <h1>{{art.title}}</h1>
-        <p>{{art.created_at}}</p>
-        <blockquote class="blockquote">
-            <p>{{art.content}}</p>
-            <footer class="blockquote-footer">{{art.author}}</footer>
-        </blockquote>
+        <h1>{{article.title}}</h1>
+        <p>{{article.add_time_date}}</p>
+        <div v-html="article.content" class="article_content">{{article.content}}</div>
         <div class="row text-center">
             <span class="col-12" @click="goBack">返回上一页</span>
         </div>
     </div>
     <div class="container mt-3 mb-5" v-show="!isShow">
-        <h1>{{art.title}}</h1>
+        <h1 v-cloak>{{ message }}</h1>
         <div class="row text-center">
             <span class="col-12" @click="goBack">返回上一页</span>
         </div>
@@ -26,29 +23,34 @@ export default {
   data () {
     return {
       isShow: false,
-      art: {
-          title: "暂无数据",
-          author: "",
-          content: "",
-          created_at: ""
+      message: "暂无数据",
+      article: {
+          
       }
     }
   },
   methods: {
     getArticleInfo () {
-      this.$http.post(this.GLOBAL.apiUrl + '/index/getArticleInfo', {id: this.$route.params.id}, {emulateJSON: true})
-      .then(
+      var that = this
+      that.$http.post(that.$GLOBAL.apiUrl + '/article/get',{
+        id: that.$route.params.id || localStorage.getItem("newsid"),
+      }).then(
         function(res) {
-          if(res.body.data) {
-            this.isShow = true
-            this.art = res.body.data[0]
+          if(res.body.code == 0) {
+            that.isShow = true
+            that.article = res.body.data
           } else {
-            this.isShow = false
+            that.$message({
+              message: res.body.msg,
+              type: "warning"
+            })
           }
         },
-        function(err) {
-          this.isShow = false
-          console.log(JSON.stringify(err))
+        function(error) {
+          that.$message({
+            message: "网络请求失败",
+            type: "warning"
+          })
         }
       )
     },
@@ -57,6 +59,9 @@ export default {
     }
   },
   mounted () {
+    if(this.$route.params.id) {
+      localStorage.setItem("newsid", this.$route.params.id)
+    }
     this.getArticleInfo();
   }
 }
@@ -69,5 +74,9 @@ export default {
 }
 span:hover {
   color: aqua;
+}
+.article_content >>> img{
+  width: 100% !important;
+  height: auto !important;
 }
 </style>

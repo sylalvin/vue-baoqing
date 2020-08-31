@@ -30,7 +30,7 @@
 
 <script>
 export default {
-  name: 'index',
+  name: 'carousel',
   props: {
     carouselList: Array
   },

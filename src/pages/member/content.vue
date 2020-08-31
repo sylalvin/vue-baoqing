@@ -5,6 +5,9 @@
                 <div class="card-body">
                     <div class="row mt-3">
                         <div class="col-12">
+
+                            <h4>会籍图文说明</h4>
+                            <img class="mb-3" :src="this.$GLOBAL.staticUrl + '/mdesc.jpg'" alt="">
                             
                             <h4>会籍概述</h4><hr>
                             <p>
@@ -44,8 +47,8 @@
                               如预订金交付后60天内，该区域未能达到建立服务网点的基本规模，预订人可申请退回预定金，申请提交后7个工作日内退后至原付款账户。
                             </p>
 
-                            <h4>使用说明</h4><hr>
-                            <img src="../../assets/guide.jpg" alt="">
+                            <!-- <h4>使用说明</h4><hr>
+                            <img :src="this.$GLOBAL.staticUrl + '/guide.jpg'" alt=""> -->
                         </div>
                     </div>
                 </div>

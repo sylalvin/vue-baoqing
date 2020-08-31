@@ -11,20 +11,20 @@
             <form>
                     <div class="form-group">
                         <label for="username">姓名:</label>
-                        <input type="text" class="form-control" :class="{borderRed: checkname == 'username'}" id="username" v-model="username" placeholder="Enter username">
+                        <input type="text" class="form-control" :class="{borderRed: checkname == 'username'}" id="username" v-model="username" placeholder="请输入对方姓名">
                     </div>
                     <div class="form-group">
                         <label for="phone">手机号:</label>
-                        <input type="number" class="form-control" :class="{borderRed: checkname == 'phone'}" id="phone" v-model="phone" placeholder="Enter phone">
+                        <input type="number" class="form-control" :class="{borderRed: checkname == 'phone'}" id="phone" v-model="phone" placeholder="请输入对方手机号">
                     </div>
                     <div class="form-group">
                         <label for="address">地址:</label>
-                        <input type="text" class="form-control" :class="{borderRed: checkname == 'address'}" id="address" v-model="address" placeholder="Enter address">
+                        <input type="text" class="form-control" :class="{borderRed: checkname == 'address'}" id="address" v-model="address" placeholder="请输入对方地址">
                     </div>
                     <div class="form-group">
                         <label for="check">验证码:</label>
                         <div class="input-group mb-3">
-                            <input class="form-control" :class="{borderRed: checkname == 'checkNumber'}" placeholder="Enter check" v-model="checkNumber">
+                            <input id="check" class="form-control" :class="{borderRed: checkname == 'checkNumber'}" placeholder="请输入验证码" v-model="checkNumber">
                             <div class="input-group-append">
                                 <span class="input-group-text" disabled="true" @click="changeText">{{time + checkText}}</span>
                             </div>
