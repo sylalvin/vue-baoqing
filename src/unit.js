@@ -64,6 +64,8 @@ const Global = {
     baseUrl: "http://www.h2h777.cn/#",
     // 线上静态资源地址
     staticUrl: "http://files.h2h777.cn/index/bqimg"
+    // 线上静态资源视频地址
+    // staticVedioUrl: "http://files.h2h777.cn/index/vedio"
 }
 
 const MemberLevel = {
@@ -71,7 +73,7 @@ const MemberLevel = {
     0: {
         name: "普通会员",
         price: 199,
-        desc: "每年3999元/366瓶气",
+        desc: "每年7800元/366瓶气",
         date: "永久"
     },
     1: {

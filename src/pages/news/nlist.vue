@@ -170,5 +170,8 @@ export default {
 }
 .pagination > li > a.disabled {
   color: #999 !important;
+  cursor: not-allowed !important;
+  background-color: #e9ecef !important;
+  border-color: #dee2e6 !important;
 }
 </style>

@@ -59,6 +59,10 @@ export default {
               this.$message.error("手机号不能为空");
               this.checkname = "username"
               return;
+          } else if(!(/^1[3456789]\d{9}$/.test(this.username))) {
+              this.$message.error("手机号格式不正确");
+              this.checkname = "username"
+              return;
           }
           this.$http.post(that.$GLOBAL.apiUrl + '/sms/send',{
             phone: that.username,
@@ -101,9 +105,17 @@ export default {
               this.$message.error("新密码不能为空");
               this.checkname = "password"
               return;
+          } else if(!(/^.{6,16}$/.test(this.password))) {
+              this.$message.error("新密码至少6位，至多16位");
+              this.checkname = "password"
+              return;
           }
           if(!this.$checkNull(this.password_again)) {
               this.$message.error("重复新密码不能为空");
+              this.checkname = "password_again"
+              return;
+          } else if(!(/^.{6,16}$/.test(this.password_again))) {
+              this.$message.error("重复新密码至少6位，至多16位");
               this.checkname = "password_again"
               return;
           }

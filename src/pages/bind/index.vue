@@ -56,6 +56,10 @@ export default {
               this.$message.error("手机号不能为空");
               this.checkname = "mobile"
               return;
+          } else if(!(/^1[3456789]\d{9}$/.test(this.mobile))) {
+              this.$message.error("手机号格式不正确");
+              this.checkname = "mobile"
+              return;
           }
           this.$http.post(that.$GLOBAL.apiUrl + '/sms/send',{
             phone: this.mobile,
@@ -96,6 +100,10 @@ export default {
           var that = this
           if(!this.$checkNull(this.mobile)) {
               this.$message.error("手机号不能为空");
+              this.checkname = "mobile"
+              return;
+          } else if(!(/^1[3456789]\d{9}$/.test(this.mobile))) {
+              this.$message.error("手机号格式不正确");
               this.checkname = "mobile"
               return;
           }

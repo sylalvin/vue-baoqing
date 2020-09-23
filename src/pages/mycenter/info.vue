@@ -199,14 +199,26 @@ export default {
         this.$message.error("收货人姓名不能为空");
         this.checkname = "username"
         return;
+      } else if(!(/^[\u4e00-\u9fa5]{2,4}$/.test(this.name))) {
+        this.$message.error("收货人姓名格式不正确，应为2-4个汉字");
+        this.checkname = "name"
+        return;
       }
       if(!this.$checkNull(this.tel)) {
-        this.$message.error("收货人电话不能为空");
+        this.$message.error("收货人手机号不能为空");
+        this.checkname = "tel"
+        return;
+      } else if(!(/^1[3456789]\d{9}$/.test(this.tel))) {
+        this.$message.error("收货人手机号格式不正确");
         this.checkname = "tel"
         return;
       }
       if(!this.$checkNull(this.detailText)) {
         this.$message.error("详细地址不能为空");
+        this.checkname = "detailText"
+        return;
+      } else if(!(/^.{5,}$/.test(this.detailText))) {
+        this.$message.error("请填写详细的收货地址");
         this.checkname = "detailText"
         return;
       }

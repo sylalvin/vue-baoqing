@@ -1,13 +1,12 @@
 <template>
   <div class="main pb-1 pb-md-3">
+    <!-- <div class="container-fluid">
+      <div class="row">
+        <video width="100%" preload="auto" autoplay="" controls loop="" src="http://files.h2h777.cn/index/vedio/how-to-use.mp4" muted="" :poster="carouselList[0].src"></video>
+      </div>
+    </div> -->
     <carousel v-bind:carousel-list="carouselList"></carousel>
     <div class="container">
-
-      <!-- <div class="mt-3 mb-3 embed-responsive embed-responsive-16by9">
-        <video width="320" height="240" controls>
-          <source src="http://test.h2h777.cn/vedio/vedio1.mp4" type="video/mp4">
-        </video>
-      </div> -->
 
       <div class="row" ref="pic1">
         <div class="col-12 pt-3 text-bg">
@@ -24,7 +23,7 @@
           <img class="down" :src="this.$GLOBAL.staticUrl + '/down.png'" alt="">
         </div>
         <div class="col-12 animate__animated" :class="{animate__bounceInRight: pic1_active}" v-show="pic1_show">
-            <img class="img-fluid" :src="this.$GLOBAL.staticUrl + '/advantage.jpg'" alt="">
+            <img class="img-fluid" v-lazy="this.$GLOBAL.staticUrl + '/advantage.jpg'" alt="">
         </div>
       </div>
       <div class="row" ref="pic2">
@@ -47,26 +46,26 @@
           </div>
         </div> -->
         <div ref="sy1" class="col-12 animate__animated" :class="{animate__bounceInLeft: sy1_active}" v-show="sy1_show">
-            <img class="img-fluid" :src="this.$GLOBAL.staticUrl + '/shiyong1.png'" alt="">
+            <img class="img-fluid" v-lazy="this.$GLOBAL.staticUrl + '/shiyong1.png'" alt="">
         </div>
         <div ref="sy2" class="col-12 animate__animated" :class="{animate__bounceInRight: sy2_active}" v-show="sy2_show">
-            <img class="img-fluid" :src="this.$GLOBAL.staticUrl + '/shiyong2.png'" alt="">
+            <img class="img-fluid" v-lazy="this.$GLOBAL.staticUrl + '/shiyong2.png'" alt="">
         </div>
         <div ref="sy3" class="col-12 animate__animated" :class="{animate__bounceInLeft: sy3_active}" v-show="sy3_show">
-            <img class="img-fluid" :src="this.$GLOBAL.staticUrl + '/shiyong3.png'" alt="">
+            <img class="img-fluid" v-lazy="this.$GLOBAL.staticUrl + '/shiyong3.png'" alt="">
         </div>
         <div ref="sy4" class="col-12 animate__animated" :class="{animate__bounceInRight: sy4_active}" v-show="sy4_show">
-            <img class="img-fluid" :src="this.$GLOBAL.staticUrl + '/shiyong4.png'" alt="">
+            <img class="img-fluid" v-lazy="this.$GLOBAL.staticUrl + '/shiyong4.png'" alt="">
         </div>
       </div>
       <div class="row" ref="pic3">
         <div class="col-12 pt-3 text-bg">
           <h3 class="animate__animated" :class="{animate__bounceInUp: pic3_active}" v-show="pic3_show"><span class="title-text">相 关 资 质</span></h3><br>
           <span class="animate__animated" :class="{animate__fadeInUpBig: pic3_active}" v-show="pic3_show">道路运输许可证、气瓶充装许可证、质量管理体系认证证书、安全生产标准化证书、上海市计量测试技术研究院华东国家计量测试中心 中国上海测试中心检测报告、上海市特种设备监督检验技术研究院检验报告。</span><br>
-          <img class="down" :src="this.$GLOBAL.staticUrl + '/down.png'" alt="">
+          <img class="down" v-lazy="this.$GLOBAL.staticUrl + '/down.png'" alt="">
         </div>
         <div class="col-12 animate__animated" :class="{animate__bounceInRight: pic3_active}" v-show="pic3_show">
-            <img class="img-fluid" :src="this.$GLOBAL.staticUrl + '/book.png'" alt="">
+            <img class="img-fluid" v-lazy="this.$GLOBAL.staticUrl + '/book.png'" alt="">
         </div>
       </div>
     </div>

@@ -24,7 +24,7 @@
                 </div>
               </div>
               <div class="row mt-3">
-                <div class="col-12">
+                <div class="col-12 offset-md-4">
                   <h4>权益概述：</h4>
                   <blockquote class="blockquote">
                     <p>{{ this.$MEMBER[this.userInfo.user_type].desc }}</p>

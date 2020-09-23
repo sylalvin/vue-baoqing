@@ -11,6 +11,7 @@ import animate from 'animate.css'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import '../static/css/common.css'
+import VueLazyLoad from 'vue-lazyload'
 
 Vue.config.productionTip = false
 Vue.prototype.$MEMBER = MemberLevel
@@ -23,6 +24,12 @@ Vue.prototype.$bindMobile = bindMobile
 Vue.use(VueResource)
 Vue.use(animate)
 Vue.use(ElementUI)
+Vue.use(VueLazyLoad,{
+  preLoad: 1.3,
+  error:'./assets/error.png',
+  loading:'./assets/loading.png',
+  attempt: 1
+})
 
 /* eslint-disable no-new */
 router.beforeEach((to, from ,next) => {

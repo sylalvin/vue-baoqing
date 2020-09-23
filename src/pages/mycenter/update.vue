@@ -97,9 +97,17 @@ export default {
               this.$message.error("新密码不能为空");
               this.checkname = "password"
               return;
+          } else if(!(/^.{6,16}$/.test(this.password))) {
+              this.$message.error("新密码至少6位，至多16位");
+              this.checkname = "password"
+              return;
           }
           if(!this.$checkNull(this.password_again)) {
               this.$message.error("重复新密码不能为空");
+              this.checkname = "password_again"
+              return;
+          } else if(!(/^.{6,16}$/.test(this.password_again))) {
+              this.$message.error("重复新密码至少6位，至多16位");
               this.checkname = "password_again"
               return;
           }
